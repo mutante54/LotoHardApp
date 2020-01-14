@@ -1,451 +1,450 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:isScrollContainer="false"
-    android:orientation="vertical"
-    android:overScrollMode="always"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayoutStep1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/linearLayoutStep1C1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/qtdSortedNumbers"
-                android:text="Número de dezenas:" />
-
-            <EditText
-                android:id="@+id/qtdSortedNumbers"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="2"
-                android:text="15" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutStep1C2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/minPercEvenSortedNumbers"
-                android:text="% dezenas pares:" />
-
-            <EditText
-                android:id="@+id/minPercEvenSortedNumbers"
-                android:layout_width="50dp"
-                android:layout_height="39dp"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="3"
-                android:text="50" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutStep1C3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/minPercOddSortedNumbers"
-                android:text="% dezenas ímpares:" />
-
-            <EditText
-                android:id="@+id/minPercOddSortedNumbers"
-                android:layout_width="50dp"
-                android:layout_height="39dp"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="3"
-                android:text="50" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutStep1C4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/fixedNumber1"
-                android:text="Dezenas fixas:" />
-
-            <EditText
-                android:id="@+id/fixedNumber1"
-                android:layout_width="40dp"
-                android:layout_height="39dp"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/fixedNumber2"
-                android:layout_width="40dp"
-                android:layout_height="39dp"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/fixedNumber3"
-                android:layout_width="40dp"
-                android:layout_height="39dp"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/fixedNumber4"
-                android:layout_width="40dp"
-                android:layout_height="39dp"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="2" />
-
-            <EditText
-                android:id="@+id/fixedNumber5"
-                android:layout_width="40dp"
-                android:layout_height="39dp"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="2" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutStep2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentBottom="false"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginRight="5dp"
-        android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/linearLayoutStep1"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal">
+            android:layout_height="200dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="306dp"
+            <LinearLayout
+                android:id="@+id/linearLayoutStep1C1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Distribuição das dezenas"
-                android:textStyle="bold" />
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/qtdSortedNumbers"
+                    android:text="Número de dezenas:" />
+
+                <EditText
+                    android:id="@+id/qtdSortedNumbers"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutStep1C2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/minPercEvenSortedNumbers"
+                    android:text="% dezenas pares:" />
+
+                <EditText
+                    android:id="@+id/minPercEvenSortedNumbers"
+                    android:layout_width="50dp"
+                    android:layout_height="39dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:text="50" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutStep1C3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/minPercOddSortedNumbers"
+                    android:text="% dezenas ímpares:" />
+
+                <EditText
+                    android:id="@+id/minPercOddSortedNumbers"
+                    android:layout_width="50dp"
+                    android:layout_height="39dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:text="50" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutStep1C4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/fixedNumber1"
+                    android:text="Dezenas fixas:" />
+
+                <EditText
+                    android:id="@+id/fixedNumber1"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+                <EditText
+                    android:id="@+id/fixedNumber2"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+                <EditText
+                    android:id="@+id/fixedNumber3"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+                <EditText
+                    android:id="@+id/fixedNumber4"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+                <EditText
+                    android:id="@+id/fixedNumber5"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayoutStep2"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:text="Linha" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:layout_weight="1"
-                android:text="Prioridade" />
-
-            <TextView
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Min. Dez." />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Max. Dez." />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#DAD8D8"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:text="Linha 1 (01-05)"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/line1Priority"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="0" />
-
-            <EditText
-                android:id="@+id/line1MinNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="3" />
-
-            <EditText
-                android:id="@+id/line1MaxNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="4" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#DAD8D8"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:text="Linha 2 (06-10)"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/line2Priority"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="1" />
-
-            <EditText
-                android:id="@+id/line2MinNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="1" />
-
-            <EditText
-                android:id="@+id/line2MaxNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#DAD8D8"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:text="Linha 3 (11-15)"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/line3Priority"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="0" />
-
-            <EditText
-                android:id="@+id/line3MinNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="3" />
-
-            <EditText
-                android:id="@+id/line3MaxNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="3" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#DAD8D8"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:text="Linha 4 (16-20)"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/line4Priority"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="1" />
-
-            <EditText
-                android:id="@+id/line4MinNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="2" />
-
-            <EditText
-                android:id="@+id/line4MaxNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="3" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#DAD8D8"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginLeft="2dp"
-                android:layout_weight="1"
-                android:text="Linha 5 (21-25)"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/line5Priority"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="0" />
-
-            <EditText
-                android:id="@+id/line5MinNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="3" />
-
-            <EditText
-                android:id="@+id/line5MaxNumbers"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number"
-                android:maxLength="1"
-                android:text="3" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/linearLayoutStep2"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_marginBottom="10dp"
-            android:background="#8DC5E9"
-            android:onClick="buildGames"
-            android:text="Gerar Jogos" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="306dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Distribuição das dezenas"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:text="Linha" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_weight="1"
+                    android:text="Prioridade" />
+
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Min. Dez." />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Max. Dez." />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#DAD8D8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:text="Linha 1 (01-05)"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/line1Priority"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="0" />
+
+                <EditText
+                    android:id="@+id/line1MinNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="3" />
+
+                <EditText
+                    android:id="@+id/line1MaxNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#DAD8D8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:text="Linha 2 (06-10)"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/line2Priority"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="1" />
+
+                <EditText
+                    android:id="@+id/line2MinNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="1" />
+
+                <EditText
+                    android:id="@+id/line2MaxNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#DAD8D8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:text="Linha 3 (11-15)"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/line3Priority"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="0" />
+
+                <EditText
+                    android:id="@+id/line3MinNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="3" />
+
+                <EditText
+                    android:id="@+id/line3MaxNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#DAD8D8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:text="Linha 4 (16-20)"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/line4Priority"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="1" />
+
+                <EditText
+                    android:id="@+id/line4MinNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="2" />
+
+                <EditText
+                    android:id="@+id/line4MaxNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#DAD8D8"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:text="Linha 5 (21-25)"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/line5Priority"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="0" />
+
+                <EditText
+                    android:id="@+id/line5MinNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="3" />
+
+                <EditText
+                    android:id="@+id/line5MaxNumbers"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:text="3" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginBottom="10dp"
+                android:background="#8DC5E9"
+                android:onClick="buildGames"
+                android:text="Gerar Jogos" />
+        </LinearLayout>
+
     </LinearLayout>
 
-
-</RelativeLayout>
+</ScrollView>

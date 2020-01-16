@@ -2,11 +2,13 @@ package com.br.lotohardapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public static Integer minPercEvenSortedNumbers;
 
     // numeros sorteados (jogo original)
-    public static List<Integer> sortedNumbers = new ArrayList<>();
+    public static List<Integer> sortedNumbers;
 
     // Bloco Aleatório (com "x" dezenas do jogo original)
     public static List<Integer> sortedNumbersBlockRandom = new ArrayList<>();
@@ -88,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
     public static Integer line5Priority;
     public static Integer line5MinNumbers;
     public static Integer line5MaxNumbers;
+
+    public static List<Integer> game2Numbers;
+    public static List<Integer> game3Numbers;
+    public static List<Integer> game4Numbers;
+    public static List<Integer> game5Numbers;
+    public static List<Integer> game6Numbers;
 
 
     @Override
@@ -151,6 +159,30 @@ public class MainActivity extends AppCompatActivity {
         line5MinNumbers = Integer.parseInt(editTextLine5MinNumbers.getText().toString());
         line5MaxNumbers = Integer.parseInt(editTextLine5MaxNumbers.getText().toString());
 
+        Integer totalMinNumbers = line1MinNumbers + line2MinNumbers + line3MinNumbers + line4MinNumbers + line5MinNumbers;
+
+        if (totalMinNumbers > qtdSortedNumbers) {
+            Context context = getApplicationContext();
+            CharSequence text = "A soma da quantidade mínima de dezenas por linha é superior a quantidade de dezenas do jogo!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+            return;
+        }
+
+        Integer totalPercTypeNumbers = minPercEvenSortedNumbers + minPercOddSortedNumbers;
+
+        if (totalPercTypeNumbers != 100) {
+            Context context = getApplicationContext();
+            CharSequence text = "A soma dos percentuais de pares e ímpares deve ser igual a 100";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+            return;
+        }
+
         /*
             Executa o processamento
          */
@@ -165,6 +197,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private static void process() {
 
+        sortedNumbers = new ArrayList<>();
+        countSortedOddNumbers = 0D;
+        countSortedEvenNumbers = 0D;
+
         List<Line> lines = new ArrayList<>();
         lines.add(new Line(1, line1Priority, line1MinNumbers, line1MaxNumbers, Arrays.asList(1, 2, 3, 4, 5)));
         lines.add(new Line(2, line2Priority, line2MinNumbers, line2MaxNumbers, Arrays.asList(6, 7, 8, 9, 10)));
@@ -172,12 +208,40 @@ public class MainActivity extends AppCompatActivity {
         lines.add(new Line(4, line4Priority, line4MinNumbers, line4MaxNumbers, Arrays.asList(16, 17, 18, 19, 20)));
         lines.add(new Line(5, line5Priority, line5MinNumbers, line5MaxNumbers, Arrays.asList(21, 22, 23, 24, 25)));
 
+        /**
+         * Parte 0 - Processando as dezenas fixas (se houver).
+         * Caso existam, será necessário atualizar os contadores das linhas e também de pares e ímpares
+         */
+        if (fixedNumber1 != null) sortedNumbers.add(fixedNumber1);
+        if (fixedNumber2 != null) sortedNumbers.add(fixedNumber2);
+        if (fixedNumber3 != null) sortedNumbers.add(fixedNumber3);
+        if (fixedNumber4 != null) sortedNumbers.add(fixedNumber4);
+        if (fixedNumber5 != null) sortedNumbers.add(fixedNumber5);
+
+        if (sortedNumbers.size() > 0) {
+            sortedNumbers.forEach(sortedNumber -> {
+
+                for (Line line : lines) {
+                    if (line.getNumbers().contains(sortedNumber)) {
+                        line.setCountSortedNumbers(line.getCountSortedNumbers() + 1);
+                        break;
+                    }
+                }
+
+                if (sortedNumber % 2 != 0) {
+                    countSortedOddNumbers++;
+                } else {
+                    countSortedEvenNumbers++;
+                }
+            });
+        }
+
         /*
          * Parte 1 - Preenchendo o minimo de dezenas por linha (sorteando dezenas
          * aleatoriamente)
          */
         lines.forEach(line -> {
-            while (line.getCountSortedNumbers() < line.getMinSortedNumbers()) {
+            while (line.getCountSortedNumbers() < line.getMinSortedNumbers() && sortedNumbers.size() < qtdSortedNumbers) {
                 int sortedNumber = line.getNumbers().get(new Random().nextInt(line.getNumbers().size()));
                 if (!sortedNumbers.contains(sortedNumber)) {
                     line.setCountSortedNumbers(line.getCountSortedNumbers() + 1);
@@ -204,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
             // temos a necessidade de preencher a linha em no máximo "x" tentativas..
             // pode ocorrer de não ser possível preencher a linha porque não existem mais
             // dezenas disponíveis para atender à regra de pares/ ímpares
-            while (line.getCountSortedNumbers() < line.getMaxSortedNumbers() && countAttempts < maxAttempts) {
+            while (line.getCountSortedNumbers() < line.getMaxSortedNumbers() && sortedNumbers.size() < qtdSortedNumbers && countAttempts < maxAttempts) {
 
                 // sorteando próxima dezena
                 int sortedNumber = line.getNumbers().get(new Random().nextInt(line.getNumbers().size()));
@@ -248,21 +312,10 @@ public class MainActivity extends AppCompatActivity {
                     countAttempts++;
                 }
             }
+
         });
 
         sortedNumbers.sort(Comparator.naturalOrder());
-
-        System.out.println("Data de geração: " + new Date().toString());
-
-        /*
-         * Imprimir as dezenas
-         */
-
-        System.out.println("\nDezenas sorteadas (Jogo #1- original): \n");
-        printNumbers(sortedNumbers);
-
-        System.out.println("\nQtd Pares: " + countSortedEvenNumbers.intValue());
-        System.out.println("\nQtd Ímpares: " + countSortedOddNumbers.intValue());
 
         /*
          * Parte 3 - construindo demais jogos (espelhos)
@@ -272,74 +325,46 @@ public class MainActivity extends AppCompatActivity {
         sortedNumbersBlockRandom = extractRandomNumbersFromGame(sortedNumbers, 6);
 
         System.out.println("\nJogo #2 (Movendo 6 dezenas aleatórias): ");
-        List<Integer> game2Numbers = new ArrayList<>();
+        game2Numbers = new ArrayList<>();
         game2Numbers.addAll(moveNumbersTo(sortedNumbersBlockRandom));
         game2Numbers.addAll(getExceptionNumbersFromOriginalGame(sortedNumbersBlockRandom));
         game2Numbers.sort(Comparator.naturalOrder());
-        printNumbers(game2Numbers);
-        System.out.println("Qtd de dezenas que não constam no jogo #1: " + getQtdNumbersDiffWithOriginalGame(game2Numbers));
 
         // Jogo 3- Isolando 5 dezenas do jogo original
         sortedNumbersBlockRandom = extractRandomNumbersFromGame(sortedNumbers, 5);
 
         System.out.println("\nJogo #3 (Movendo 5 dezenas aleatórias): ");
-        List<Integer> game3Numbers = new ArrayList<>();
+        game3Numbers = new ArrayList<>();
         game3Numbers.addAll(moveNumbersTo(sortedNumbersBlockRandom));
         game3Numbers.addAll(getExceptionNumbersFromOriginalGame(sortedNumbersBlockRandom));
         game3Numbers.sort(Comparator.naturalOrder());
-        printNumbers(game3Numbers);
-        System.out.println("Qtd de dezenas que não constam no jogo #1: " + getQtdNumbersDiffWithOriginalGame(game3Numbers));
 
         // Jogo 4- Isolando 5 dezenas do jogo original
         sortedNumbersBlockRandom = extractRandomNumbersFromGame(sortedNumbers, 5);
 
         System.out.println("\nJogo #4 (Movendo 5 dezenas aleatórias): ");
-        List<Integer> game4Numbers = new ArrayList<>();
+        game4Numbers = new ArrayList<>();
         game4Numbers.addAll(moveNumbersTo(sortedNumbersBlockRandom));
         game4Numbers.addAll(getExceptionNumbersFromOriginalGame(sortedNumbersBlockRandom));
         game4Numbers.sort(Comparator.naturalOrder());
-        printNumbers(game4Numbers);
-        System.out.println("Qtd de dezenas que não constam no jogo #1: " + getQtdNumbersDiffWithOriginalGame(game4Numbers));
 
         // Jogo 5- Isolando 4 dezenas do jogo original
         sortedNumbersBlockRandom = extractRandomNumbersFromGame(sortedNumbers, 4);
 
         System.out.println("\nJogo #5 (Movendo 4 dezenas aleatórias): ");
-        List<Integer> game5Numbers = new ArrayList<>();
+        game5Numbers = new ArrayList<>();
         game5Numbers.addAll(moveNumbersTo(sortedNumbersBlockRandom));
         game5Numbers.addAll(getExceptionNumbersFromOriginalGame(sortedNumbersBlockRandom));
         game5Numbers.sort(Comparator.naturalOrder());
-        printNumbers(game5Numbers);
-        System.out.println("Qtd de dezenas que não constam no jogo #1: " + getQtdNumbersDiffWithOriginalGame(game5Numbers));
 
         // Jogo 6- Isolando 3 dezenas do jogo original
         sortedNumbersBlockRandom = extractRandomNumbersFromGame(sortedNumbers, 3);
 
         System.out.println("\nJogo #6 (Movendo 3 dezenas aleatórias): ");
-        List<Integer> game6Numbers = new ArrayList<>();
+        game6Numbers = new ArrayList<>();
         game6Numbers.addAll(moveNumbersTo(sortedNumbersBlockRandom));
         game6Numbers.addAll(getExceptionNumbersFromOriginalGame(sortedNumbersBlockRandom));
         game6Numbers.sort(Comparator.naturalOrder());
-        printNumbers(game6Numbers);
-        System.out.println("Qtd de dezenas que não constam no jogo #1: " + getQtdNumbersDiffWithOriginalGame(game6Numbers));
-
-    }
-
-    /**
-     * Imprime os números (como uma única string)
-     *
-     * @param numbers
-     */
-    private static void printNumbers(List<Integer> numbers) {
-        String line = "";
-        for (int i = 0; i < numbers.size(); i++) {
-            if (!line.isEmpty()) {
-                line += "-";
-            }
-            line += numbers.get(i);
-        }
-
-        System.out.println(line);
     }
 
     /**
@@ -411,23 +436,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         return newNumbers;
-    }
-
-    /**
-     * Obtém a quantidade de dezenas do jogo informado que não constam no jogo
-     * original
-     *
-     * @param numbers
-     * @return
-     */
-    private static int getQtdNumbersDiffWithOriginalGame(List<Integer> numbers) {
-        int qtd = 0;
-        for (Integer integer : numbers) {
-            if (!sortedNumbers.contains(integer)) {
-                qtd++;
-            }
-        }
-        return qtd;
     }
 
     /**
